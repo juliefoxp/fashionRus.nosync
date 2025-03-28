@@ -1,0 +1,88 @@
+---
+const { product } = Astro.props;
+---
+
+<article>
+  <img
+    src={`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}
+    <h1
+  />{product.productdisplayname}
+  <p>{product.price}</p>
+  <a href=`/product/${product.id}`>Se mere</a>
+  {product.soldout == 1 && <p class="soldout">Udsolgt</p>}
+  {product.discount == null ? "" : <p class="discount">Rabat</p>}
+</article>
+
+<style>
+  .soldout {
+    color: red;
+  }
+  .discount {
+    color: green;
+  }
+  /* Generelt layout for card */
+  article {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(134, 118, 118, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* Hover-effekt for at få kortet til at zoome */
+  article:hover {
+    transform: scale(1.05);
+  }
+
+  /* Billede af produktet */
+  article img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  /* Produktnavn */
+  h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 15px 0 10px 0;
+    text-transform: capitalize;
+  }
+
+  /* Pris */
+  p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+  }
+
+  /* Link til produktet */
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  /* Udsolgt tekst */
+  .soldout {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  /* Rabat tekst */
+  .discount {
+    color: green;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+</style>
